@@ -9,7 +9,6 @@ const AllBooks = () => {
             .then(res => res.json())
             .then(data => setBooks(data));
     }, []);
-    console.log("books",books)
     return (
         <div className='my-12 container mx-auto'>
             <h2 className='font-bold text-3xl text-center mb-6'>Books</h2>
