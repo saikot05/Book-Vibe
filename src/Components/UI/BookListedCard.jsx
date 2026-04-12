@@ -3,89 +3,109 @@ import { MapPin, BookOpen, User } from 'lucide-react';
 
 const BookListedCard = ({ book, onViewDetails }) => {
     const {
-        bookName,
-        author,
-        image,
-        tags = [],
-        yearOfPublishing,
-        publisher,
-        totalPages,
-        category,
-        rating,
+        bookName, author, image, tags = [],
+        yearOfPublishing, publisher, totalPages,
+        category, rating,
     } = book;
 
     return (
-        <div className="flex flex-col sm:flex-row gap-5 bg-white border border-gray-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow duration-300">
+        <div
+            style={{ fontFamily: "'DM Sans', sans-serif", background: '#141414', border: '0.5px solid rgba(255,255,255,0.08)' }}
+            className="relative flex flex-col sm:flex-row gap-5 rounded-2xl p-5 transition-all duration-300 overflow-hidden"
+            onMouseEnter={e => {
+                e.currentTarget.style.background = '#181818';
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.14)';
+            }}
+            onMouseLeave={e => {
+                e.currentTarget.style.background = '#141414';
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
+            }}
+        >
+            <div className="pointer-events-none absolute inset-0"
+                style={{ background: 'radial-gradient(ellipse at 5% 50%, rgba(180,130,60,0.05) 0%, transparent 60%)' }}
+            />
 
-            {/* Image — top center on mobile, left center on desktop */}
             <div className="flex items-center justify-center">
-                <div className="w-[140px] h-[180px] sm:w-[120px] sm:h-[160px] rounded-xl overflow-hidden bg-gray-200 flex items-center justify-center p-2 shrink-0">
-                    <img
-                        src={image}
-                        alt={bookName}
-                        className="w-full h-full object-contain"
-                    />
+                <div className="w-[120px] h-[165px] rounded-xl overflow-hidden flex items-center justify-center p-2 shrink-0"
+                    style={{ background: '#1e1e1e', border: '0.5px solid rgba(255,255,255,0.06)' }}>
+                    <img src={image} alt={bookName} className="w-full h-full object-contain" />
                 </div>
             </div>
 
-            {/* Content */}
-            <div className="flex flex-col justify-between flex-1 min-w-0">
-
+            <div className="flex flex-col justify-between flex-1 min-w-0 gap-2">
                 <div>
-                    <h2 className="text-xl font-bold text-gray-900 truncate">{bookName}</h2>
-                    <p className="text-sm text-gray-500 mt-1">By : {author}</p>
+                    <h2
+                        style={{ fontFamily: "'Playfair Display', serif", color: '#f0ece3', fontSize: '18px', fontWeight: 600 }}
+                        className="truncate leading-snug m-0"
+                    >
+                        {bookName}
+                    </h2>
+                    <p style={{ color: '#6b6b6b', fontSize: '12.5px' }} className="mt-1 m-0">
+                        By : {author}
+                    </p>
                 </div>
 
-                <hr className="border-dashed border-gray-200 my-3" />
+                <hr style={{ borderColor: 'rgba(255,255,255,0.08)', borderStyle: 'dashed' }} className="border-t border-0 m-0" />
 
-                {/* Tags + Year */}
-                <div className="flex flex-wrap items-center gap-2 text-sm">
-                    <span className="font-semibold text-gray-700">Tag</span>
-                    {tags.map((tag) => (
-                        <span
-                            key={tag}
-                            className="bg-gray-100 text-green-600 font-medium px-2 py-0.5 rounded-full text-xs"
-                        >
+                <div className="flex flex-wrap items-center gap-2">
+                    <span style={{ color: '#555', fontSize: '12px', fontWeight: 500 }}>Tag</span>
+                    {tags.map(tag => (
+                        <span key={tag} style={{
+                            color: '#b8924a', fontSize: '11px',
+                            background: 'rgba(184,146,74,0.1)',
+                            border: '0.5px solid rgba(184,146,74,0.2)',
+                            padding: '2px 8px', borderRadius: '99px'
+                        }}>
                             #{tag}
                         </span>
                     ))}
-                    <span className="sm:ml-auto flex items-center gap-1 text-gray-500 text-xs whitespace-nowrap">
-                        <MapPin size={13} className="text-gray-400" />
+                    <span className="sm:ml-auto flex items-center gap-1 whitespace-nowrap" style={{ color: '#484848', fontSize: '11px' }}>
+                        <MapPin size={12} style={{ opacity: 0.5 }} />
                         Year of Publishing: {yearOfPublishing ?? 'N/A'}
                     </span>
                 </div>
 
-                {/* Publisher + Pages */}
-                <div className="flex flex-wrap items-center gap-4 mt-2 text-sm text-gray-500">
-                    <span className="flex items-center gap-1">
-                        <User size={14} className="text-gray-400" />
+                <div className="flex flex-wrap items-center gap-4">
+                    <span className="flex items-center gap-1" style={{ color: '#555', fontSize: '12px' }}>
+                        <User size={13} style={{ opacity: 0.5 }} />
                         Publisher: {publisher}
                     </span>
-                    <span className="flex items-center gap-1">
-                        <BookOpen size={14} className="text-gray-400" />
+                    <span className="flex items-center gap-1" style={{ color: '#555', fontSize: '12px' }}>
+                        <BookOpen size={13} style={{ opacity: 0.5 }} />
                         Page {totalPages}
                     </span>
                 </div>
 
-                <hr className="border-dashed border-gray-200 my-3" />
+                <hr style={{ borderColor: 'rgba(255,255,255,0.08)', borderStyle: 'dashed' }} className="border-t border-0 m-0" />
 
-                {/* Category + Rating + Button */}
                 <div className="flex flex-wrap items-center gap-3">
-                    <div className="flex items-center gap-1">
-                        <span className="text-sm font-semibold text-gray-700">Category:</span>
-                        <span className="text-sm text-gray-600">{category}</span>
+                    <div>
+                        <span style={{ color: '#484848', fontSize: '11.5px' }}>Category: </span>
+                        <span style={{ color: '#8a8a8a', fontSize: '11.5px' }}>{category}</span>
                     </div>
-                    <span className="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-sm font-semibold">
+                    <span style={{
+                        color: '#c97d20', fontSize: '12px', fontWeight: 500,
+                        background: 'rgba(201,125,32,0.12)',
+                        border: '0.5px solid rgba(201,125,32,0.2)',
+                        padding: '3px 10px', borderRadius: '99px'
+                    }}>
                         ★ {rating}
                     </span>
                     <button
                         onClick={() => onViewDetails(book)}
-                        className="sm:ml-auto w-full sm:w-auto px-6 py-2 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 active:scale-95 transition-all duration-200"
+                        className="sm:ml-auto w-full sm:w-auto"
+                        style={{
+                            padding: '7px 20px', background: '#b8924a',
+                            color: '#0d0d0d', border: 'none', borderRadius: '10px',
+                            fontFamily: "'DM Sans', sans-serif", fontSize: '13px',
+                            fontWeight: 500, cursor: 'pointer', transition: 'background 0.2s',
+                        }}
+                        onMouseEnter={e => e.currentTarget.style.background = '#cba45a'}
+                        onMouseLeave={e => e.currentTarget.style.background = '#b8924a'}
                     >
                         View Details
                     </button>
                 </div>
-
             </div>
         </div>
     );

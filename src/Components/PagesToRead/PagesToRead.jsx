@@ -20,7 +20,6 @@ const COLORS = {
   red:   ['#e84040', '#c22020'],
 };
 
-// Generate bell-curve spike data for a given page count
 function buildSpikeData(pages) {
   return Array.from({ length: 61 }, (_, i) => {
     const t = i / 60;
@@ -62,7 +61,7 @@ function SpikeChart({ book }) {
         </AreaChart>
       </ResponsiveContainer>
 
-      <div style={{ fontSize: 12, color: '#6b6a65', textAlign: 'center', marginTop: 6 }}>
+      <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.35)', textAlign: 'center', marginTop: 6 }}>
         {book.title}
       </div>
     </div>
@@ -71,20 +70,20 @@ function SpikeChart({ book }) {
 
 const PagesToRead = () => {
   return (
-    <div style={{ background: '#f5f4f0', minHeight: '100vh', fontFamily: "'DM Sans', sans-serif" }}>
+    <div style={{ background: '#1a1f2e', minHeight: '100vh', fontFamily: "'DM Sans', sans-serif" }}>
 
       <main style={{ padding: '32px 40px' }}>
-        <div style={{ background: '#fff', borderRadius: 12, border: '0.5px solid #e0ddd5', padding: '28px 32px 16px' }}>
+        <div style={{ background: '#12151f', borderRadius: 12, border: '0.5px solid rgba(255,255,255,0.08)', padding: '28px 32px 16px' }}>
           <div style={{ display: 'flex', gap: 0 }}>
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'flex-end', paddingRight: 8, paddingBottom: 28, paddingTop: 18, minWidth: 36 }}>
               {[340, 255, 170, 85, 0].map((v) => (
-                <span key={v} style={{ fontSize: 11, color: '#a09f98' }}>{String(v).padStart(2, '0')}</span>
+                <span key={v} style={{ fontSize: 11, color: 'rgba(255,255,255,0.25)' }}>{String(v).padStart(2, '0')}</span>
               ))}
             </div>
             <div style={{ flex: 1, position: 'relative' }}>
               <div style={{ position: 'absolute', inset: 0, bottom: 28, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', pointerEvents: 'none' }}>
                 {[0, 1, 2, 3, 4].map((i) => (
-                  <div key={i} style={{ borderTop: '1px dashed #e8e6de', width: '100%' }} />
+                  <div key={i} style={{ borderTop: '1px dashed rgba(255,255,255,0.07)', width: '100%' }} />
                 ))}
               </div>
               <div style={{ display: 'flex', position: 'relative', zIndex: 1 }}>
